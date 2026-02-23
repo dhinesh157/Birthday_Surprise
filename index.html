@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Biee ❤️</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #1a0b2e;
+      --text-color: #fdfdfd;
+      --accent: #ff4f7b;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .background {
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      background: radial-gradient(circle, #2b1055 0%, #1a0b2e 100%);
+    }
+
+    .scene {
+      position: absolute;
+      z-index: 10;
+      opacity: 0;
+      transform: scale(0.9);
+      pointer-events: none;
+      transition: all 0.8s ease-in-out;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    .scene.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #ffb8d1;
+      margin-bottom: 10px;
+    }
+
+    p { font-size: 1.2rem; }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    button:hover { background: #ff2a5f; transform: scale(1.05); }
+
+    .cake-container {
+      font-size: 100px;
+      cursor: pointer;
+      transition: 0.3s;
+      animation: bounce 2s infinite;
+    }
+    .cake-container:hover { transform: scale(1.1); }
+    .instruction { font-size: 0.9rem; opacity: 0.7; }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .polaroid {
+      background: white;
+      padding: 10px 10px 25px 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transform: rotate(-3deg);
+      transition: 0.3s;
+    }
+    .polaroid:nth-child(even) { transform: rotate(4deg); }
+    .polaroid:hover { transform: scale(1.1) rotate(0deg); z-index: 100; }
+    .polaroid img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      background: #ccc; 
+    }
+
+    .gifts-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    .gift-item {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .gift-item:hover { transform: scale(1.1); }
+    .gift-icon { font-size: 80px; }
+    .gift-label { font-size: 1rem; margin-top: 10px; transition: 0.3s; }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: 0.5s;
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .letter-paper {
+      background: #fdf5e6;
+      color: #333;
+      padding: 40px;
+      max-width: 500px;
+      width: 80%;
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      text-align: left;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #888;
+      font-family: sans-serif;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="C:\certificates\FULL STACK\Week_5\mega.mp4" type="audio/mp4">
+  </audio>
+
+  <audio id="our-song" loop>
+    <source src="C:\certificates\FULL STACK\Week_5\song.mpeg" type="audio/mpeg">
+  </audio>
+
+  <div class="background" id="bg"></div>
+
+  <div class="scene active" id="scene-1">
+    <h1>Happy Birthday Biee 🐻</h1>
+    <p>Please turn on your volume for the best experience.</p>
+    <button onclick="startExperience()">Let's begin the party ✨</button>
+  </div>
+
+  <div class="scene" id="scene-2">
+    <div class="cake-container" onclick="blowCandles()">
+      <span id="cake-emoji">🎂</span>
+    </div>
+    <h2>Nothing goes better with you Abi.. 🫶💝✨</h2>
+    <p class="instruction">(Tap the cake to blow out the candles! ✨)</p>
+  </div>
+
+  <div class="scene" id="scene-3">
+    <h1>Happy Birthday to the most special person.</h1>
+    <p>Forever yours 💕</p>
+    <button onclick="nextScene(4)">Continue</button>
+  </div>
+
+  <div class="scene" id="scene-4">
+    <h1>Our Beautiful Memories</h1>
+    <div class="gallery">
+      <div class="polaroid"><img src="C:\certificates\FULL STACK\Week_5\WhatsApp Image 2026-02-23 at 5.56.49 PM (3).jpeg" alt="Memory"></div>
+      <div class="polaroid"><img src="C:\certificates\FULL STACK\Week_5\WhatsApp Image 2026-02-23 at 5.56.49 PM.jpeg" alt="Memory"></div>
+      <div class="polaroid"><img src="C:\certificates\FULL STACK\Week_5\WhatsApp Image 2026-02-23 at 5.56.49 PM (4).jpeg" alt="Memory"></div>
+      <div class="polaroid"><img src="C:\certificates\FULL STACK\Week_5\WhatsApp Image 2026-02-23 at 5.56.49 PM (1).jpeg" alt="Memory"></div>
+    </div>
+    <button onclick="nextScene(5)">One more thing...</button>
+  </div>
+
+  <div class="scene" id="scene-5">
+    <h1>A small gift for you</h1>
+    <div class="gifts-container">
+      
+      <div class="gift-item" id="music-gift" onclick="toggleOurSong()">
+        <div class="gift-icon">💿</div>
+        <div class="gift-label" id="music-text">Song</div>
+      </div>
+
+      <div class="gift-item" onclick="openLetter()">
+        <div class="gift-icon">💌</div>
+        <div class="gift-label">Open</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="letter-modal">
+    <div class="letter-paper">
+      <span class="close-btn" onclick="closeLetter()">×</span>
+      <p>Dear Biee,</p>
+      <p>On this special day, I want you to know how much you mean to me. You bring so much joy, laughter, and love into my life.</p>
+      <p>May this year be filled with beautiful moments, endless happiness, and all your dreams coming true.</p>
+      <p>Happy Birthday! 🎂</p>
+      <p style="text-align: right; margin-top: 30px;">With all my love,<br>Agalya ❤️</p>
+    </div>
+  </div>
+
+  <script>
+    function nextScene(sceneNumber) {
+      const scenes = document.querySelectorAll('.scene');
+      scenes.forEach(scene => scene.classList.remove('active'));
+      const next = document.getElementById(`scene-${sceneNumber}`);
+      if (next) { next.classList.add('active'); }
+    }
+
+    function startExperience() {
+      const audio = document.getElementById('bg-music');
+      audio.volume = 0.5;
+      audio.play().catch(e => console.log("Audio play failed:", e));
+      nextScene(2);
+    }
+
+    function blowCandles() {
+      const cake = document.getElementById('cake-emoji');
+      cake.innerText = '🍰'; 
+      setTimeout(() => { nextScene(3); }, 1500);
+    }
+
+    // --- NEW: TOGGLE OUR SONG FUNCTION ---
+    function toggleOurSong() {
+      const bgMusic = document.getElementById('bg-music');
+      const ourSong = document.getElementById('our-song');
+      const musicText = document.getElementById('music-text');
+
+      if (ourSong.paused) {
+        // Pause background music, play our song
+        bgMusic.pause();
+        ourSong.volume = 0.8;
+        ourSong.play();
+        musicText.innerText = "Playing... 🎶";
+        musicText.style.color = "#ff4f7b";
+        musicText.style.fontWeight = "bold";
+      } else {
+        // Pause our song, resume background music
+        ourSong.pause();
+        bgMusic.play();
+        musicText.innerText = "Our Song";
+        musicText.style.color = "var(--text-color)";
+        musicText.style.fontWeight = "normal";
+      }
+    }
+
+    function openLetter() {
+      document.getElementById('letter-modal').classList.add('active');
+    }
+
+    function closeLetter() {
+      document.getElementById('letter-modal').classList.remove('active');
+    }
+
+    function createParticle() {
+      const bg = document.getElementById('bg');
+      const particle = document.createElement('div');
+      const emojis = ['✨', '💖', '🎉', '🦋', '😘'];
+      
+      particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      particle.style.position = 'absolute';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.top = '100vh';
+      particle.style.fontSize = (Math.random() * 15 + 20) + 'px';
+      particle.style.opacity = Math.random() * 0.5 + 0.2;
+      particle.style.transition = 'transform 10s linear, opacity 10s linear';
+      
+      bg.appendChild(particle);
+
+      setTimeout(() => {
+        particle.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
+        particle.style.opacity = '0';
+      }, 100);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 10000);
+    }
+
+    setInterval(createParticle, 500);
+  </script>
+</body>
+</html>
